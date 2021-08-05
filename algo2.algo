@@ -1,0 +1,98 @@
+ALGORITHM worskshop2
+VAR
+    tab1,tab2: ARRAY_OF INTEGER[];
+    sum:INTEGER;
+    exist:BOOLEAN;
+    
+    
+BEGIN
+    tab1:={1,5,9,10,12};
+    tab2:={2,3,5,1,13}; 
+    sum=0;
+
+    FOR i FROM 0 TO tab1.length-1 DO
+    exist:=false;
+        FOR j FROM 0 TO tab2.length-1 DO
+            IF (tab1[i]=tab2[j]) THEN
+               exist=true; 
+            END_IF
+        END_FOR
+        IF (exist=false) THEN
+            sum+=tab1[i];
+        END_IF
+    END_FOR
+
+    FOR i FROM 0 TO tab2.length-1 DO
+    exist:=false;
+        FOR j FROM 0 TO tab1.length-1 DO
+            IF (tab1[i]=tab2[j]) THEN
+               exist=true; 
+            END_IF
+        END_FOR
+        IF (exist=false) THEN
+            sum+=tab2[j];
+        END_IF
+    END_FOR
+
+END
+
+
+
+
+ALGORITHM probeleme2
+VAR
+    tab1,tab2: ARRAY_OF INTEGER[];
+    sum:INTEGER;
+    exist:BOOLEAN;
+    
+    
+BEGIN
+    tab1:={1,5,9,10,12};
+    tab2:={2,3,5,1,13}; 
+    sum=0;
+
+    FOR i FROM 0 TO tab1.length-1 DO
+    exist:=true;
+        FOR j FROM 0 TO tab2.length-1 DO
+            IF (tab1[i]!=tab2[j]) THEN
+               exist=false; 
+            END_IF
+        END_FOR
+        IF (exist=true) THEN
+            sum+=tab1[i];
+        END_IF
+    END_FOR
+END
+// hash table
+
+ALGORITHM hashtable_prob
+VAR
+    tab1:={1,5,9,10,12};
+    tab2:={2,3,5,1,13}; 
+    htab : HASH_TABLE<INTEGER,INTEGER>;
+    sum_d,sum_c,count,keys: INTEGER;
+    exist:BOOLEAN;
+BEGIN
+    count=1;
+    htab.insert
+    sum=0;
+   FOR i FROM 0 TO tab1.length-1   DO
+    htab.insert(tab1(i),count)
+   END_FOR
+   FOR j FROM 0 TO tab2.length-1   DO
+       IF(htab.lookup(tab2[j])=true) THEN
+        htab.insert(tab2[j],count+1)
+        ELSE 
+        htab.insert(tab2[j],count)
+       END_IF
+    END_FOR
+    keys:=htab.getKeys();
+    FOR i FROM 0 TO keys.length   DO
+        IF (htab.get[keys[i]]=1) THEN
+            sum_d+=keys[i]; 
+        ELSE
+        sum_c+=keys[i]*count;
+        END_IF
+    END_FOR
+   
+END
